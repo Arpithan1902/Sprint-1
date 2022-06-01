@@ -11,6 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="booking_tbl")
@@ -23,22 +28,26 @@ public class Booking {
 	@Column(name="booking_id")
 	private int bookingId;
 	
+	@PastOrPresent(message="please enter valid date")
 	@Column(name="booking_date")
 	private LocalDate bookingDate;
 	
+	@NotNull(message="please enter start time")
 	@Column(name="start_Time")
 	private String startTime;
 	
+	@NotNull(message="Please enter end time")
 	@Column(name="end_Time")
 	private String endTime;
 	
-	
+	@Positive(message= "please enter positive value")
 	@Column(name="booking_Amount")
 	private double bookingAmount;
 	
-	@Column(name="total_Amount")
-	private double TotalAmount;
 	
+	
+	
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -109,13 +118,7 @@ public class Booking {
 		this.bookingAmount = bookingAmount;
 	}
 
-	public double getTotalAmount() {
-		return TotalAmount;
-	}
-
-	public void setTotalAmount(double totalAmount) {
-		TotalAmount = totalAmount;
-	}
+	
 
 	public String getStatus() {
 		return status;
@@ -124,7 +127,5 @@ public class Booking {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
+
 }

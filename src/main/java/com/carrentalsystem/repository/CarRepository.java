@@ -14,9 +14,10 @@ public interface CarRepository extends JpaRepository<Car, Integer>{
 	
 	List<Car> findByFuelType(String fuelType);
 	
+	List<Car> findBySeatingCapacity(int seatingcapacity);
+
 	
 	@Query("select c from Car c where c.rentalPrice between :lPrice and :uPrice")
 	List<Car> findAllCarsWithinPriceRange(@Param("lPrice")double lowerRentalPrice,@Param("uPrice")double upperRentalPrice);
 
 }
-

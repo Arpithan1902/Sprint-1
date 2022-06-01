@@ -10,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="car_tbl")
@@ -25,6 +28,7 @@ public class Car {
 	@Column(name="car_number")
 	private String carNumber;
 	
+	
 	@Column(name="car_model")
 	private String carModel;
 	
@@ -38,8 +42,9 @@ public class Car {
 	private String fuelType;
 
 	
-	@OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
-	private Set<Booking> booking=new HashSet<>();
+	@JsonIgnore
+	@OneToOne(mappedBy = "car",cascade = CascadeType.ALL)
+	private Booking booking;
 	
 	
 	
@@ -90,13 +95,19 @@ public class Car {
 		this.fuelType = fuelType;
 	}
 
-	public Set<Booking> getBooking() {
+	public Booking getBooking() {
 		return booking;
 	}
 
-	public void setBooking(Set<Booking> booking) {
+	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
+
+
+	
+	
+	
+
 
 	
 	

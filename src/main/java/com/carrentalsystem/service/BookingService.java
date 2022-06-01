@@ -6,9 +6,9 @@ import com.carrentalsystem.entity.Booking;
 
 public interface BookingService {
 	
-	public Booking saveBooking(Booking booking);
+	public Booking saveBooking(Booking booking,int carId,int userId);
 	
-	public Booking updateBooking(Booking booking);
+	//public Booking updateBooking(Booking booking);
 	
 	public void deleteBooking(int bookingId);
 

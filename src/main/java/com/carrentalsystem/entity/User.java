@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user_tbl")
@@ -21,26 +25,29 @@ public class User {
 	@Column(name="user_id")
 	private int userId;
 	
+	@NotNull(message="please enter user name")
 	@Column(name="userName")
 	private String name;
 	
+	@NotNull(message="please enter user address")
 	@Column(name="user_address")
 	private String address;
 	
-	@Column(name="user_phone")
+	@Positive(message="please enter positive number")
+	@Column(name="user_phone",unique = true)
 	private long phone;
 	
-	@Column(name="user_email")
+	@NotNull(message="please enter correct user email")
+	@Column(name="user_email",unique = true)
 	private String email;
 			
+	@NotNull(message="please correct enter password")
 	@Column(name="login_password")
 	private String password;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private Set<Booking> booking=new HashSet<>();
-	
-	
-
 	
 	public int getUserId() {
 		return userId;
@@ -66,7 +73,6 @@ public class User {
 		this.address = address;
 	}
 
-
 	public long getPhone() {
 		return phone;
 	}
@@ -83,7 +89,6 @@ public class User {
 		this.email = email;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
@@ -99,7 +104,5 @@ public class User {
 	public void setBooking(Set<Booking> booking) {
 		this.booking = booking;
 	}
-
-	
 
 }
