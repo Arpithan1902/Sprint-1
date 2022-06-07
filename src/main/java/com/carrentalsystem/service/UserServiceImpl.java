@@ -84,9 +84,6 @@ public class UserServiceImpl implements UserService {
 	
 	}
 	
-		
-	
-
 	@Override
 	public User doLogin(String email, String password) {
 		User user = userRepository.login(email, password);

@@ -1,6 +1,6 @@
-package com.carrentalsystem.model;
+package com.carrentalsystem.dto;
 
-public class LoginResponse {
+public class LoginResponseDTO {
 	
 	private int userId;
 	private String name;

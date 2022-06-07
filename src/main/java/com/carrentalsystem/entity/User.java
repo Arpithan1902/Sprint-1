@@ -45,8 +45,10 @@ public class User {
 	@Column(name="login_password")
 	private String password;
 	
+	
+	//orphan only for removing the child entity
 	@JsonIgnore
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Booking> booking=new HashSet<>();
 	
 	public int getUserId() {

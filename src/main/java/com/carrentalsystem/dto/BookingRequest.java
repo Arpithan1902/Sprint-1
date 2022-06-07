@@ -1,4 +1,4 @@
-package com.carrentalsystem.model;
+package com.carrentalsystem.dto;
 
 import java.time.LocalDate;
 

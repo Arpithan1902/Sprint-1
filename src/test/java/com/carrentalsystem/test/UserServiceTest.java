@@ -1,6 +1,7 @@
 package com.carrentalsystem.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import com.carrentalsystem.service.UserService;
 import com.carrentalsystem.service.UserServiceImpl;
 
 @SpringBootTest
-public class UserServiceTest {
+class UserServiceTest {
 
 	@InjectMocks
 	private UserService userService = new UserServiceImpl();
@@ -27,7 +28,7 @@ public class UserServiceTest {
 	private UserRepository userRepository;
 
 	@Test
-	public void testGetUserById() {
+	void testGetUserById() {
 		User user = new User();
 
 		user.setUserId(100);
@@ -46,8 +47,9 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testDeleteUser() {
+	void testDeleteUser() {
 		User user = new User();
+		
 		user.setUserId(100);
 		user.setName("Venu");
 		user.setAddress("Mysuru");
@@ -58,13 +60,13 @@ public class UserServiceTest {
 		Optional<User> optionalUser = Optional.of(user);
 
 		when(userRepository.findById(100)).thenReturn(optionalUser);
-
+		//assertEquals("100", optionalUser.get());
 		userService.deleteUSer(100);
 
 	}
 
 	@Test
-	public void testSaveUser() {
+	void testSaveUser() {
 
 		User user = new User();
 		user.setUserId(100);
@@ -83,7 +85,7 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testUpdateUser() {
+	void testUpdateUser() {
 
 		User user = new User();
 		user.setUserId(100);
@@ -104,7 +106,7 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testGetAllUser() {
+	void testGetAllUser() {
 
 		User user = new User();
 		user.setUserId(100);

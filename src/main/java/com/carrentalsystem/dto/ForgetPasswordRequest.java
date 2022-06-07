@@ -1,4 +1,4 @@
-package com.carrentalsystem.model;
+package com.carrentalsystem.dto;
 
 public class ForgetPasswordRequest {
 	private String email;

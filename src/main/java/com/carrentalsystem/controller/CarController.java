@@ -14,50 +14,37 @@ import com.carrentalsystem.service.CarService;
 
 @RestController
 public class CarController {
-	
+
 	@Autowired
 	private CarService carService;
-	
-	
+
 	@GetMapping("/car/all")
-	public List<Car> fetchAllCars(){
-		List<Car> carList=carService.getAllCars();
+	public List<Car> fetchAllCars() {
+		List<Car> carList = carService.getAllCars();
 		return carList;
-		
+
 	}
 
-	
 	@GetMapping("/car/seating/{seatingcapacity}")
-	public List<Car> fetchCarBySeatingCapacity(@PathVariable("seatingcapacity")int seatingCapacity){
-		
-		List<Car> carSeating=carService.getCarBySeatingCapacity(seatingCapacity);
-		
+	public List<Car> fetchCarBySeatingCapacity(@PathVariable("seatingcapacity") int seatingCapacity) {
+
+		List<Car> carSeating = carService.getCarBySeatingCapacity(seatingCapacity);
+
 		return carSeating;
-		
+
 	}
-	
-	
+
 	@GetMapping("/car/bymodel/{modelname}")
-	public List<Car> fetchCarByModel(@PathVariable("modelname") String carModel){
-		List<Car> cars=carService.getCarByModel(carModel);
+	public List<Car> fetchCarByModel(@PathVariable("modelname") String carModel) {
+		List<Car> cars = carService.getCarByModel(carModel);
 		return cars;
 	}
-	
-	
+
 	@GetMapping("/car/byfuelType/{fuel}")
-	public List<Car> fetchCarByFuelType(@PathVariable("fuel")String fuelType){
-		List<Car> cars=carService.getCarByFuelType(fuelType);
+	public List<Car> fetchCarByFuelType(@PathVariable("fuel") String fuelType) {
+		List<Car> cars = carService.getCarByFuelType(fuelType);
 		return cars;
-		
+
 	}
-	
 
-
-
-	
-	
-	
 }
-
-
-
