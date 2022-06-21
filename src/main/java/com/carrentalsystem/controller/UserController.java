@@ -7,13 +7,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carrentalsystem.dto.ForgetPasswordRequest;
@@ -24,6 +24,8 @@ import com.carrentalsystem.entity.User;
 import com.carrentalsystem.service.UserService;
 
 @RestController
+@CrossOrigin(origins="http://localhost:3000/")
+
 public class UserController {
 
 	@Autowired
@@ -31,13 +33,13 @@ public class UserController {
 
 	@PostMapping("/user/login")
 	public ResponseEntity<LoginResponseDTO> signin(@RequestBody LoginRequestDTO loginRequest) {
-		User loginUser = userService.doLogin(loginRequest.getEmail(), loginRequest.getPassword());
+		User user = userService.doLogin(loginRequest.getEmail(), loginRequest.getPassword());
 
 		LoginResponseDTO loginResponse = new LoginResponseDTO();
-		loginResponse.setUserId(loginUser.getUserId());
-		loginResponse.setName(loginUser.getName());
-		loginResponse.setPhone(loginUser.getPhone());
-		loginResponse.setAddress(loginUser.getAddress());
+		loginResponse.setUserId(user.getUserId());
+		loginResponse.setName(user.getName());
+		loginResponse.setPhone(user.getPhone());
+		loginResponse.setAddress(user.getAddress());
 
 		ResponseEntity<LoginResponseDTO> responseEntity = new ResponseEntity<>(loginResponse, HttpStatus.OK);
 		return responseEntity;
@@ -64,8 +66,6 @@ public class UserController {
 	@GetMapping("/user/booking/{userId}")
 	public List<Booking> fetchAllBookingByUser(@PathVariable("userId") int userId) {
 		List<Booking> bookings = userService.getAllBookingByUserId(userId);
-
-		// List<Booking> bookings = new ResponseEntity<>(bookings, HttpStatus.OK);
 		return bookings;
 	}
 

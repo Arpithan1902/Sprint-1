@@ -1,7 +1,6 @@
 package com.carrentalsystem.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ class UserServiceTest {
 	@Test
 	void testDeleteUser() {
 		User user = new User();
-		
+
 		user.setUserId(100);
 		user.setName("Venu");
 		user.setAddress("Mysuru");
@@ -60,7 +59,7 @@ class UserServiceTest {
 		Optional<User> optionalUser = Optional.of(user);
 
 		when(userRepository.findById(100)).thenReturn(optionalUser);
-		//assertEquals("100", optionalUser.get());
+		
 		userService.deleteUSer(100);
 
 	}

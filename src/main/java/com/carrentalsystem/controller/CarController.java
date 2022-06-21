@@ -5,18 +5,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carrentalsystem.entity.Booking;
 import com.carrentalsystem.entity.Car;
+import com.carrentalsystem.entity.User;
 import com.carrentalsystem.service.CarService;
 
+
 @RestController
+@CrossOrigin(origins="http://localhost:3000/")
 public class CarController {
 
 	@Autowired
 	private CarService carService;
+	
+	
+	
 
 	@GetMapping("/car/all")
 	public List<Car> fetchAllCars() {
@@ -46,5 +54,11 @@ public class CarController {
 		return cars;
 
 	}
+//	@GetMapping("/car/{carId}")
+//	public ResponseEntity<Car> fetchCarDetails(@PathVariable("carId") int carId) {
+//		Car car = carService.getCarById(carId);
+//		ResponseEntity<Car> responseEntity = new ResponseEntity<>(car, HttpStatus.OK);
+//		return responseEntity;
+//	}
 
 }

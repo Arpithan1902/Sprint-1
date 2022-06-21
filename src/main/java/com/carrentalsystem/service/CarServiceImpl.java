@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.carrentalsystem.entity.Car;
+import com.carrentalsystem.entity.User;
 import com.carrentalsystem.exception.CarNotFoundException;
+import com.carrentalsystem.exception.UserNotFoundException;
 import com.carrentalsystem.repository.CarRepository;
 
 @Service
@@ -42,5 +44,16 @@ public class CarServiceImpl implements CarService {
 		List<Car> carSeating= carRepository.findBySeatingCapacity(seatingCapacity);
 		return carSeating;
 	}
+
+//	@Override
+//	public Car getCarById(int carId); {
+//		Optional<Car> optionalCar=carRepository.findById(carId);
+//		if(optionalCar.isEmpty()) {
+//			throw new CarNotFoundException("User Not existing with Id:" + carId);
+//			
+//		}
+//		Car car=optionalCar.get();
+//		return car;
+//	}
 
 }

@@ -12,45 +12,42 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="user_tbl")
+@Table(name = "user_tbl")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private int userId;
-	
-	@NotNull(message="please enter user name")
-	@Column(name="userName")
+
+	@NotNull(message="please enter valid user name")
+	@Column(name = "userName")
 	private String name;
-	
-	@NotNull(message="please enter user address")
-	@Column(name="user_address")
+
+	@NotNull(message="please enter correct address")
+	@Column(name = "user_address")
 	private String address;
 	
-	@Positive(message="please enter positive number")
-	@Column(name="user_phone",unique = true)
+	@NotNull(message="please enter correctly")
+	@Column(name = "user_phone", unique = true)
 	private long phone;
-	
-	@NotNull(message="please enter correct user email")
-	@Column(name="user_email",unique = true)
+
+	@NotNull(message="please enter valid email")
+	@Column(name = "user_email", unique = true)
 	private String email;
-			
-	@NotNull(message="please correct enter password")
-	@Column(name="login_password")
+
+	@NotNull(message="please enter password")
+	@Column(name = "login_password")
 	private String password;
-	
-	
-	//orphan only for removing the child entity
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Booking> booking=new HashSet<>();
-	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
+	private Set<Booking> booking = new HashSet<>();
+
 	public int getUserId() {
 		return userId;
 	}
@@ -82,7 +79,7 @@ public class User {
 	public void setPhone(long phone) {
 		this.phone = phone;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -98,7 +95,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Set<Booking> getBooking() {
 		return booking;
 	}

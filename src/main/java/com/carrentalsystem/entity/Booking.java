@@ -1,5 +1,5 @@
 package com.carrentalsystem.entity;
-
+//sudhiir
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -11,57 +11,47 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name="booking_tbl")
+@Table(name = "booking_tbl")
 public class Booking {
-	
-	//Booking-id [PK]	Booking_date	Start_time	End time	Car_id[FK]	User_Id  [FK]	Amount / hour	Total Amount
+
+	// Booking-id [PK] Booking_date Start_time End time Car_id[FK] User_Id [FK]
+	// Amount / hour Total Amount
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="booking_id")
+	@Column(name = "booking_id")
 	private int bookingId;
-	
-	@PastOrPresent(message="please enter valid date")
-	@Column(name="booking_date")
+
+	@Column(name = "booking_date")
 	private LocalDate bookingDate;
-	
-	@NotNull(message="please enter start time")
-	@Column(name="start_Time")
+
+	@Column(name = "start_Time")
 	private String startTime;
-	
-	@NotNull(message="Please enter end time")
-	@Column(name="end_Time")
+
+	@Column(name = "end_Time")
 	private String endTime;
-	
-	@Positive(message= "please enter positive value")
-	@Column(name="booking_Amount")
+
+	@Positive(message = "please enter positive value")
+	@Column(name = "booking_Amount")
 	private double bookingAmount;
-	
-	
-	
-	
-	//@JsonIgnore
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
-	
+
 	@OneToOne
-	@JoinColumn(name="car_id")
+	@JoinColumn(name = "car_id")
 	private Car car;
 
-	@Column(name="booking_status")
-	private String status;
 	
-	
-	
-	
+
 	public int getBookingId() {
 		return bookingId;
 	}
@@ -119,13 +109,5 @@ public class Booking {
 	}
 
 	
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 }

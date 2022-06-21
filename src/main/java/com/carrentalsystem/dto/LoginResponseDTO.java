@@ -4,7 +4,6 @@ public class LoginResponseDTO {
 	
 	private int userId;
 	private String name;
-	
 	private String address;
 	private long phone;
 	

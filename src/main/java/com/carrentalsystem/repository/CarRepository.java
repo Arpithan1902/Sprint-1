@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import com.carrentalsystem.entity.Car;
 
 public interface CarRepository extends JpaRepository<Car, Integer>{
+	
+	
 	 
 	List<Car> findByCarModel(String carModel);
 	
